@@ -1,0 +1,49 @@
+.custom-card {
+    width: 300px;
+    background-color: #93e2bb;
+  }
+  
+  .custom-card-header {
+    background-color: #93e2bb;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .custom-card-content {
+    background-color: #93e2bb;
+    
+  }
+  
+  .avatar-column {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+  }
+  
+  .avatar {
+    width: 70px;
+    height: 70px;
+    border: 3px solid #000;
+  }
+  
+  .name {
+    font-family: 'Lorem';
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+  
+  .rating {
+    display: flex;
+    align-items: center;
+    color: #1B7B2C;
+  }
+  
+  @media (max-width: 600px) {
+    .custom-card {
+      width: 100%;
+    }
+  }
+  
