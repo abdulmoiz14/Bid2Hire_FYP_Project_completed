@@ -27,7 +27,7 @@ export const changePassword = async (req, res, next) => {
 };
 
 export const signUp = async (req, res,next) => {
-  const { firstName, lastName, email, password } = req.body;
+  const { firstName, lastName, email,phoneNo, password } = req.body;
 
   // validate fields
   if (!(firstName || lastName || email || password)) {
@@ -49,6 +49,7 @@ export const signUp = async (req, res,next) => {
       firstName,
       lastName,
       email,
+      phoneNo,
       password: hashedPassword,
     });
 

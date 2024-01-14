@@ -415,7 +415,7 @@ export const getAssignedJobs = async (req, res, next) => {
       .populate({
         path: 'createdBy assignedTo',
         model: 'Users',
-        select: 'firstName lastName feesPerHour', // Include the necessary fields
+        select: 'firstName lastName feesPerHour phoneNo', // Include the necessary fields
       })
       .select('category location description images stage jobType userBid');
     // Modify the response data to include feesPerHour for assignedTo

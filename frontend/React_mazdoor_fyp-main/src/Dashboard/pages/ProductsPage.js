@@ -13,11 +13,13 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import globalUser from '../../global-data';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export default function ProductsPage() {
   const [jobHistory, setJobHistory] = useState([]);
   const [selectedJob, setSelectedJob] = useState(null);
   const [openViewDialog, setOpenViewDialog] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchJobData = async () => {
@@ -39,12 +41,15 @@ export default function ProductsPage() {
 
           if (Array.isArray(responseData.data)) {
             setJobHistory(responseData.data);
+            setLoading(false);
           }
         } else {
           console.error('Error fetching job data:', response.statusText);
+          setLoading(false);
         }
       } catch (error) {
         console.error('Error fetching job data:', error.message);
+        setLoading(false);
       }
     };
 
@@ -79,12 +84,15 @@ export default function ProductsPage() {
 
         if (Array.isArray(responseData.data)) {
           setJobHistory(responseData.data);
+          setLoading(false);
         }
       } else {
         console.error('Error fetching job data:', response.statusText);
+        setLoading(false);
       }
     } catch (error) {
       console.error('Error fetching job data:', error.message);
+      setLoading(false);
     }
   };
 
@@ -108,9 +116,11 @@ export default function ProductsPage() {
        await updateJobData();
       } else {
         console.error('Error updating the request:', response.statusText);
+        setLoading(false);
       }
     } catch (error) {
       console.error('Error updating labor request:', error.message);
+      setLoading(false);
     }
   };
   const handleClose = () => {
@@ -120,7 +130,8 @@ export default function ProductsPage() {
 
   return (
     <div>
-      <TableContainer component={Paper}>
+      {loading && <CircularProgress />} 
+      <TableContainer component={Paper} style={{ display: loading ? 'none' : 'block' }}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>

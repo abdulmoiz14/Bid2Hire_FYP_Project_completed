@@ -177,6 +177,7 @@ export default function OngoingUser() {
         <TableHead>
           <TableRow>
             <TableCell><h3>Labor</h3></TableCell>
+            <TableCell><h3>Phone no</h3></TableCell>
             <TableCell><h3>Category</h3></TableCell>
             <TableCell><h3>Location</h3></TableCell>
             <TableCell><h3>Job Type</h3></TableCell>
@@ -194,6 +195,7 @@ export default function OngoingUser() {
             <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
               {/* Display job history data */}
               <TableCell>{job.assignedTo?.firstName || 'N/A'} {job.assignedTo?.lastName || 'N/A'}</TableCell>
+              <TableCell>{job.createdBy?.phoneNo}</TableCell>
               <TableCell>{job.category}</TableCell>
               <TableCell>{job.location}</TableCell>
               <TableCell>{job.jobType}</TableCell>

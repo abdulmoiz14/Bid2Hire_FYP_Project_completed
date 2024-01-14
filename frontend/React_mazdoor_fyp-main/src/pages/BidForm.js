@@ -99,7 +99,7 @@ function BidForm() {
         // Process the successful response
         setSent(true);
         
-        handleNavigate("/dashboard/blog");
+        handleNavigate("/dashboard/app");
       } else {
         console.error('Error:', data.message);
         // Handle the error as needed

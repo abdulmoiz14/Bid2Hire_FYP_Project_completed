@@ -4,7 +4,8 @@ import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import Container from '@mui/material/Container';
 import Typography from '../components/Typography';
-
+//import { Link } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 const ImageBackdrop = styled('div')(({ theme }) => ({
   position: 'absolute',
   left: 0,
@@ -102,6 +103,11 @@ const images = [
 ];
 
 export default function ProductCategories() {
+  const navigate = useNavigate();
+
+  const handleNavigate = (e) => {
+    navigate(`${e}`);
+  };
   return (
     <Container component="section" sx={{ mt: 8, mb: 4 }}>
       <Typography variant="h4" marked="center" align="center" component="h2">
@@ -109,49 +115,52 @@ export default function ProductCategories() {
       </Typography>
       <Box sx={{ mt: 8, display: 'flex', flexWrap: 'wrap' }}>
         {images.map((image) => (
-          <ImageIconButton
-            key={image.title}
-            style={{
-              width: image.width,
-            }}
-          >
-            <Box
-              sx={{
-                position: 'absolute',
-                left: 0,
-                right: 0,
-                top: 0,
-                bottom: 0,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center 40%',
-                backgroundImage: `url(${image.url})`,
+          //<Link to={`/bid-form?category=${image.title}`} key={image.title}>
+            <ImageIconButton
+              key={image.title}
+              style={{
+                width: image.width,
               }}
-            />
-            <ImageBackdrop className="imageBackdrop" />
-            <Box
-              sx={{
-                position: 'absolute',
-                left: 0,
-                right: 0,
-                top: 0,
-                bottom: 0,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'common.white',
-              }}
+              onClick={handleNavigate(`/bidForm`)}
             >
-              <Typography
-                component="h3"
-                variant="h6"
-                color="inherit"
-                className="imageTitle"
+              <Box
+                sx={{
+                  position: 'absolute',
+                  left: 0,
+                  right: 0,
+                  top: 0,
+                  bottom: 0,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center 40%',
+                  backgroundImage: `url(${image.url})`,
+                }}
+              />
+              <ImageBackdrop className="imageBackdrop" />
+              <Box
+                sx={{
+                  position: 'absolute',
+                  left: 0,
+                  right: 0,
+                  top: 0,
+                  bottom: 0,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: 'common.white',
+                }}
               >
-                {image.title}
-                <div className="imageMarked" />
-              </Typography>
-            </Box>
-          </ImageIconButton>
+                <Typography
+                  component="h3"
+                  variant="h6"
+                  color="inherit"
+                  className="imageTitle"
+                >
+                  {image.title}
+                  <div className="imageMarked" />
+                </Typography>
+              </Box>
+            </ImageIconButton>
+         // </Link>
         ))}
       </Box>
     </Container>

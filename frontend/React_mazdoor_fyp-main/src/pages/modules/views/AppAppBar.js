@@ -42,7 +42,7 @@ function NavbarComponent() {
             <Nav.Link onClick={() => handleNavigate("/dashboard/app")}>Dashboard</Nav.Link>
           </Nav>
           <Nav>
-            {globalUser.userModel && !loginAsPro && (
+            {globalUser.userModel && !globalUser.userModel.loginAsPro && globalUser.userModel.isPro && (
                 <>
                   <Button variant="outline-light" onClick={() => handleSwtich()}>
                     Switch to pro
@@ -58,6 +58,7 @@ function NavbarComponent() {
                  Become a Pro
               </Button>
               </>
+              
             )}
               <div style={{ marginRight: '10px' }}></div>
               <Button onClick={handleLogout} variant="outline-light" disabled={loading}>

@@ -13,11 +13,12 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import globalUser from '../../global-data';
+import CircularProgress from '@mui/material/CircularProgress';
 export default function UserBidding() {
   const [jobHistory, setJobHistory] = useState([]);
   const [selectedJob, setSelectedJob] = useState(null);
   const [openViewDialog, setOpenViewDialog] = useState(false);
-
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchJobHistory = async () => {
       try {
@@ -38,14 +39,17 @@ export default function UserBidding() {
           if (Array.isArray(responseData.data)) {
             setJobHistory(responseData.data);
             console.log("Job history state updated:", responseData.data.bidDetails);
+            setLoading(false);
           }
         } else {
           // If there's an error, handle it
           console.error('Error fetching job history:', response.statusText);
+          setLoading(false);
         }
       } catch (error) {
         // Handle network errors or other exceptions
         console.error('Error fetching job history:', error.message);
+        setLoading(false);
       }
     };
     // Call the fetchJobHistory function
@@ -79,17 +83,21 @@ export default function UserBidding() {
       if (response.ok) {
         // If the response is successful, parse the JSON data
         const responseData = await response.json();
+        setLoading(false);
 
         if (Array.isArray(responseData.data)) {
           setJobHistory(responseData.data);
+          setLoading(false);
         }
       } else {
         // If there's an error, handle it
         console.error('Error fetching job history:', response.statusText);
+        setLoading(false);
       }
     } catch (error) {
       // Handle network errors or other exceptions
       console.error('Error fetching job history:', error.message);
+      setLoading(false);
     }
   };
   const handleConfirm = async (job) => {
@@ -108,15 +116,19 @@ export default function UserBidding() {
       });
       if (response.ok) {
         // If the response is successful, parse the JSON data
+        
         await updateJobHistory();
+        setLoading(false);
         
       } else {
         // If there's an error, handle it
         console.error('Error in assigning:', response.statusText);
+        setLoading(false);
       }
     } catch (error) {
       // Handle network errors or other exceptions
       console.error('Error update job:', error.message);
+      setLoading(false);
     }
   };
 
@@ -124,7 +136,8 @@ export default function UserBidding() {
 return (
 
     <div>
-      <TableContainer component={Paper}>
+      {loading && <CircularProgress />} 
+      <TableContainer component={Paper} style={{ display: loading ? 'none' : 'block' }}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>

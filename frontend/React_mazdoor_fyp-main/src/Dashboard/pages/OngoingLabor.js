@@ -105,6 +105,9 @@ export default function UserPage() {
               <h3>Name</h3>
             </TableCell>
             <TableCell>
+              <h3>Phone no</h3>
+            </TableCell>
+            <TableCell>
               <h3>Location</h3>
             </TableCell>
             <TableCell>
@@ -137,6 +140,7 @@ export default function UserPage() {
                 <TableCell component="th" scope="row">
                 <b>{job.createdBy?.firstName} {job.createdBy?.lastName}</b>
                 </TableCell>
+                <TableCell>{job.createdBy?.phoneNo}</TableCell>
                 <TableCell>{job.location}</TableCell>
                 <TableCell>{job.category}</TableCell>
                 <TableCell>
